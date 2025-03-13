@@ -11,14 +11,14 @@
         <nav class="panel mt-5">
           <ul>
             <li>
-              <router-link to="/" class="link">
+              <RouterLink  to="/" class="link">
                 <i class="fas fa-tasks">tarefas</i>
-              </router-link>
+              </RouterLink>
             </li>
             <li>
-              <router-link to="/projetos" class="link">
+              <RouterLink  to="/projetos" class="link">
                 <i class="fas fa-project-diagram">Projetos</i>
-              </router-link>
+              </RouterLink>
             </li>
           </ul>
         </nav>
