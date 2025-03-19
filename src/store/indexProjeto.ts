@@ -7,6 +7,7 @@ interface Estado {
     projetos: IProjeto[]
 }
 
+
 export const key : InjectionKey<Store<Estado>> = Symbol()
 
 export const store = createStore<Estado>({

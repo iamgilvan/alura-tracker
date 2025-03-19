@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { useStore } from '@/store';
+import { useStore } from '@/store/indexProjeto';
 import { EXCLUIR_PROJETO } from '@/store/tipo-mutacoes';
 import { computed, defineComponent } from 'vue';
 

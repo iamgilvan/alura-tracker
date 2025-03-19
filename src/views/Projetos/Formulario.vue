@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { useStore } from '@/store';
+import { useStore } from '@/store/indexProjeto';
 import { ALTERA_PROJETO, ADICIONA_PROJETO } from '@/store/tipo-mutacoes';
 import { defineComponent } from 'vue';
 

@@ -30,7 +30,7 @@
 import { computed, defineComponent } from 'vue';
 import Temporizador from './Temporizador.vue';
 import { useStore } from 'vuex';
-import { key } from '@/store';
+import { key } from '@/store/indexProjeto';
 
 export default defineComponent({
   name: 'Formulario',
