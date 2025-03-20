@@ -31,6 +31,8 @@ import { computed, defineComponent } from 'vue';
 import Temporizador from './Temporizador.vue';
 import { useStore } from 'vuex';
 import { key } from '@/store/indexProjeto';
+import { NOTIFICAR } from '@/store/tipo-mutacoes';
+import { TipoDeNotificacao } from '@/interfaces/INotificacao';
 
 export default defineComponent({
   name: 'Formulario',
@@ -46,6 +48,15 @@ export default defineComponent({
   },
   methods: {
     finalizarTarefa(tempoDecorrido: number) : void{
+      const projeto = this.projetos.find((p) => p.id == this.idProjeto); // primeiro, buscamos pelo projeto
+      if(!projeto) {
+          this.store.commit(NOTIFICAR, {
+              titulo: 'Ops!',
+              texto: "Selecione um projeto antes de finalizar a tarefa!",
+              tipo: TipoDeNotificacao,
+          });
+          return;
+      }
       this.$emit('aoSalvarTarefa', 
       {
         descricao: this.descricao,
@@ -58,7 +69,8 @@ export default defineComponent({
   setup() {
       const store = useStore(key)
       return {
-        projetos: computed(() => store.state.projetos)
+        projetos: computed(() => store.state.projetos),
+        store
       }
   },
 });
