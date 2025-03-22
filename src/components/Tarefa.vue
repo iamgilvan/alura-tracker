@@ -1,13 +1,16 @@
 <template>
     <Box>
         <div class="columns">
-            <div class="column is-6">
+            <div class="column is-3">
                 {{tarefa.descricao || 'Tarefa sem descricao'}}
             </div>
-            <div class="column ">
+            <div class="column is-3">
+                {{tarefa.projeto?.nome || 'Projeto sem descricao'}}
+            </div>
+            <div class="column is-3">
                 <Cronometro :tempoEmSegundos="tarefa.duracaoEmSegundos"/>
             </div>
-            <div class="column">
+            <div class="column is-1">
                 <button class="button ml-2 is-danger" @click="excluir(tarefa.id)" >
                     <span class="icon is-small">
                         <i class="fas fa-trash"></i>
