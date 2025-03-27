@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { TipoDeNotificacao } from '@/interfaces/INotificacao';
-import { useStore } from '@/store/indexProjeto';
+import { useStore } from '@/store';
 import { computed, defineComponent } from 'vue';
 
 export default defineComponent({

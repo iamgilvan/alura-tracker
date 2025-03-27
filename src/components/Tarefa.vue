@@ -1,6 +1,6 @@
 <template>
     <Box>
-        <div class="columns">
+        <div class="columns clicavel" @click="tarefaClicada">
             <div class="column is-3">
                 {{tarefa.descricao || 'Tarefa sem descricao'}}
             </div>
@@ -25,8 +25,8 @@ import { defineComponent, PropType } from 'vue';
 import Cronometro from './Cronometro.vue';
 import ITarefa from '@/interfaces/ITarefa';
 import Box from './Box.vue';
-import { useStore } from '@/store/indexTarefa';
 import { REMOVE_TAREFA } from '@/store/tipo-mutacoes';
+import { useStore } from '@/store';
 
 export default defineComponent({
     name: 'Tarefa',
@@ -34,9 +34,13 @@ export default defineComponent({
         Cronometro,
         Box,
     },
+    emits:['aoTarefaClicada'],
     methods: {
         excluir(id: string){
             this.store.commit(REMOVE_TAREFA, id);
+        },
+        tarefaClicada (): void {
+            this.$emit('aoTarefaClicada', this.tarefa)
         }
     },
     props: {
@@ -52,3 +56,9 @@ export default defineComponent({
     }
 });
 </script>
+
+<style scoped>
+.clicavel {
+    cursor: pointer;
+}
+</style>

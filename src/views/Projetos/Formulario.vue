@@ -20,9 +20,9 @@
 import { TipoDeNotificacao } from '@/interfaces/INotificacao';
 //import { notificacaoMixin } from '@/mixins/notificar';
 import useNotificador from '@/hooks/notificador';
-import { useStore } from '@/store/indexProjeto';
+import { useStore } from '@/store';
 import { defineComponent } from 'vue';
-import { ALTERAR_PROJETO, CADASTRAR_PROJETOS } from '@/store/tipo-acoes';
+import { ALTERAR_PROJETO, CADASTRAR_PROJETO } from '@/store/tipo-acoes';
 
 export default defineComponent({
     name: 'Formulario',
@@ -51,7 +51,7 @@ export default defineComponent({
                     this.lidarComSucesso()
                 });
             } else {
-                this.store.dispatch(CADASTRAR_PROJETOS, this.nomeDoProjeto)
+                this.store.dispatch(CADASTRAR_PROJETO, this.nomeDoProjeto)
                 .then(() => {
                     this.lidarComSucesso()
                 });
