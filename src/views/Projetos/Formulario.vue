@@ -21,7 +21,7 @@ import { TipoDeNotificacao } from '@/interfaces/INotificacao';
 //import { notificacaoMixin } from '@/mixins/notificar';
 import useNotificador from '@/hooks/notificador';
 import { useStore } from '@/store';
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { ALTERAR_PROJETO, CADASTRAR_PROJETO } from '@/store/tipo-acoes';
 
 export default defineComponent({
@@ -32,15 +32,6 @@ export default defineComponent({
         }
     },
     //mixins: [notificacaoMixin],
-    mounted() {
-        const projeto = this.store.state.projeto.projetos.find(proj => proj.id == this.id);
-        this.nomeDoProjeto = projeto?.nome || '';
-    },
-    data() {
-        return {
-            nomeDoProjeto: '',
-        }
-    },
     methods: {
         salvar() {
             if (this.id) {
@@ -63,12 +54,19 @@ export default defineComponent({
             this.$router.push('/projetos');
         }
     },
-    setup() {
+    setup(props) {
         const store = useStore();
-        const { notificar } = useNotificador()
+        const { notificar } = useNotificador();
+
+        const nomeDoProjeto = ref("");
+        if(props.id){
+            const projeto = store.state.projeto.projetos.find(proj => proj.id == props.id);
+            nomeDoProjeto.value = projeto?.nome || '';
+        }
         return {
             store,
-            notificar
+            notificar,
+            nomeDoProjeto
         }
     }
 });
