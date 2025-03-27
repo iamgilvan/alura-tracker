@@ -39,7 +39,7 @@ export default defineComponent({
         const { notificar } = useNotificador();
 
         const nomeDoProjeto = ref("");
-        if(props.id){
+        if (props.id) {
             const projeto = store.state.projeto.projetos.find(proj => proj.id == props.id);
             nomeDoProjeto.value = projeto?.nome || '';
         }
@@ -54,13 +54,13 @@ export default defineComponent({
                 });
             } else {
                 store.dispatch(CADASTRAR_PROJETO, nomeDoProjeto)
-                .then(() => {
-                    lidarComSucesso()
-                });
+                    .then(() => {
+                        lidarComSucesso()
+                    });
             }
         }
 
-        const lidarComSucesso = () =>{
+        const lidarComSucesso = () => {
             notificar(TipoDeNotificacao.SUCESSO, 'Novo projeto foi salvo', 'Projeto disponivel')
             nomeDoProjeto.value = '';
             router.push('/projetos');
